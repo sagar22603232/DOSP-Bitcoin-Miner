@@ -1,7 +1,7 @@
 -module(mainserver).
 -import(string, [len/1,concat/2,chr/2,substr/3,str/2,
                 to_lower/1,to_upper/1]).
--export([main/0]).
+-export([main/0,bitCoinMining/0]).
 
 while([H | T], Count1) ->
     if H == 48 ->
@@ -37,16 +37,17 @@ countZeros(HS, check) ->
     Counter.
 
 bitCoinMining () ->
-        String2 = generateString(),
-        HashString = generateHashValue(String2),
-        HexString = generateHexValue(HashString),
-        io:fwrite("~p \n",[HexString]),
-        Count = countZeros(HexString, check),
-        io:fwrite("Number of Zeros are ~p\n",[Count]).
+    String2 = generateString(),
+    HashString = generateHashValue(String2),
+    HexString = generateHexValue(HashString),
+    io:fwrite("~p \n",[HexString]),
+    Count = countZeros(HexString, check),
+    io:fwrite("Number of Zeros are ~p\n",[Count]).
         
 
 main() ->
-    spawn(mainserver, bitCoinMining(), []).
+    Pid = spawn(mainserver, bitCoinMining, []),
+    Pid.
 
 
 
