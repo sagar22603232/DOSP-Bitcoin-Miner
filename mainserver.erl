@@ -1,7 +1,7 @@
 -module(mainserver).
 -import(string, [len/1,concat/2,chr/2,substr/3,str/2,
                 to_lower/1,to_upper/1]).
--export([main/0,bitCoinMining/1]).
+-export([main/0,minner/0,bitCoinMining/1]).
 
 while([H | T], Count1) ->
     if H == 48 ->
@@ -56,11 +56,17 @@ bitCoinMining (N) ->
                 io:fwrite("We have not found\n")
         end.
 
+minner() ->
+    receive
+        {Client, Num} ->
+            Client ! bitCoinMining(Num),
+    minner()
+        end.
+
         
 
 main() ->
-    Pid = spawn(fun() -> bitCoinMining(0) end),
-    Pid.
+    spawn(fun minner/0).
 
 
 
