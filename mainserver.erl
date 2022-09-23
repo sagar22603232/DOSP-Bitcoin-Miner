@@ -36,6 +36,9 @@ countZeros(HS, check) ->
     Counter = while(HS,0),
     Counter.
 
+bitCoinMining(-1) ->
+    io:fwrite("We have found\n");
+
 bitCoinMining (N) ->
         TargetFormat = "0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
         String2 = generateString(),
@@ -48,12 +51,16 @@ bitCoinMining (N) ->
             Count >= N ->
                 if
                     TargetFormat > HexString ->
+                        bitCoinMining(-1),
                         io:fwrite("We have found\n");
                     true ->
+                        bitCoinMining(N),
                         io:fwrite("We have not found\n")
                 end;
             Count < N ->
+                bitCoinMining(N),
                 io:fwrite("We have not found\n")
+                
         end.
 
 minner() ->
@@ -63,12 +70,5 @@ minner() ->
     minner()
         end.
 
-        
-
 main() ->
     spawn(fun minner/0).
-
-
-
-
-
