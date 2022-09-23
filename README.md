@@ -48,5 +48,6 @@ brew install erlang``
 	``localserver:start(Pid,1).	``
 	
 **Work Unit**
-Multiple Actors are spwaned by the mainserver, with each each actor have a task of generating a new random string and computes the hash and checks if bitcoin has been found. This Actors runs until the condition of leading zeros is found and the hash generated is less than the target value, then the actor is killed. After nearly 90% of actors have executed, the system starts its shutdown.
+
+Multiple Actors are spawned by the mainserver, with each actor have a task of generating a new random string and computes the hash and checks if bitcoin has been found. This Actors runs until the condition of leading zeros is found and the hash generated is less than the target value, then the actor is killed. After nearly 90% of actors have executed, the system starts its shutdown.
 	
