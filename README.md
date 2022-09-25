@@ -3,7 +3,7 @@
 
 ## Project 1 – Bitcoin Miner
 
-### Ashish Mhaske –
+### Ashish Mhaske – 57959035
 
 ### Sagar Piyush Parikh – 22603232
 
