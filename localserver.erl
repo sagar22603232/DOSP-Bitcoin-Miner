@@ -3,6 +3,9 @@
 serverStart(NumOfZeroes) ->
     register(server, self()),
     receive
+        {SupervisorId, {finished}} ->
+            SupervisorId,
+            io:fwrite("Stopping the execution");
         {SupervisorId, {request}} ->
-        SupervisorId ! {self(), {NumOfZeroes}}
+            SupervisorId ! {self(), {NumOfZeroes}}
     end.
