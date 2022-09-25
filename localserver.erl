@@ -1,9 +1,8 @@
 -module(localserver).
--export([start/2]).
-
-start(Server, Num) ->
-    Server ! {self(), Num},
+-export([serverStart/1]).
+serverStart(NumOfZeroes) ->
+    register(server, self()),
     receive
-        {Server, ResultString} ->
-            ResultString
+        {SupervisorId, {request}} ->
+        SupervisorId ! {self(), {NumOfZeroes}}
     end.
